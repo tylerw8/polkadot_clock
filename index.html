@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Look What I Drew</title>
+  <meta charset="utf-8">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <style>  
+    canvas {
+      border: 1px solid black;
+      background: #ffffff;
+    }
+  </style>
+  
+  <script>
+    window.onload = function() {  
+      var canvas = document.getElementById("shape");
+      var context = canvas.getContext("2d");
+
+      function animate(){
+          var myTime = new Date();
+          var msec = myTime.getTime();
+          var myString = msec.toString();
+          var shapeFill = "#" + myString.slice(7, 13);
+          var myX = 100 * myString.slice(12,13);
+          var myY = 50 * myString.slice(10,11);
+          var myR = 20 * myString.slice(7,8);
+          var myShaddow = "#" + myString.slice(0,5);
+
+
+          context.beginPath();
+          context.arc(myX, myY, myR, 20, 2*Math.PI, true);
+
+          context.closePath();
+          context.lineWidth = 5;
+          context.strokeStyle = "#ffffff";
+          context.stroke();
+          context.shadowColor = "#000000";
+          context.shadowOffsetX = 15;
+          context.shadowOffsetY = 15;
+          context.shadowBlur = 50;
+          context.fillStyle = shapeFill;
+          context.fill();
+          
+      };
+      
+      setInterval(animate, 10000 / 30);
+      
+    };
+     
+  </script>
+  
+</head>
+<body>
+
+  <canvas id="shape" width="1024" height="500"></canvas>
+
+<p id="demo"></p>
+<button onclick="myFunction()">Restart</button>
+
+<script>
+function myFunction() {
+    location.reload();
+}
+</script>
+
+</body>
+</html>
